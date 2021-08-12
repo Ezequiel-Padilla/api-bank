@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::apiResource('cuenta', App\Http\Controllers\AccountController::class);
+Route::apiResource('evento', App\Http\Controllers\EventController::class);
+Route::post('/reset', function() {
+    try {
+        Artisan::call('migrate:fresh');
+        return 'Reseteado!';
+    } catch (\Exception $e) {
+        return 'Error al resetear';
+    }
 });
