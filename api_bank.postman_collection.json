@@ -17,7 +17,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/register/?name=Ezequiel Padilla&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678&password_confirmation=12345678",
+					"raw": "http://127.0.0.1:8000/api/register/?name=Ezequiel Padilla&email=theeze216@gmail.com&amount=5000&password=12345678&password_confirmation=12345678",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -38,7 +38,7 @@
 						},
 						{
 							"key": "email",
-							"value": "ezequiel.padilla@anima.edu.uy"
+							"value": "theeze216@gmail.com"
 						},
 						{
 							"key": "amount",
@@ -114,6 +114,108 @@
 			]
 		},
 		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login/?email=ezequiel.padilla@anima.edu.uy&password=12345678",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ezequiel.padilla@anima.edu.uy"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|FVMDALfLOotFMTJd1eWmQcSHXJxsrn45dWs6CtBM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/accounts/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "accounts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/accounts/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
 			"name": "accounts",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -124,7 +226,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"value": "3|mZHZbwt3W6s04p2sXmgoCwNNU8f6xlLV1qaCJfFo",
 							"type": "string"
 						}
 					]
@@ -198,15 +300,25 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"value": "3|mZHZbwt3W6s04p2sXmgoCwNNU8f6xlLV1qaCJfFo",
 							"type": "string"
 						}
 					]
 				},
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/accounts/1?name=Ezequiel Padillaa&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678",
+					"raw": "http://127.0.0.1:8000/api/accounts/1?name=Ezequiel Padilla&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678&password_confirmation=12345678",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -223,7 +335,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "Ezequiel Padillaa"
+							"value": "Ezequiel Padilla"
 						},
 						{
 							"key": "email",
@@ -235,6 +347,10 @@
 						},
 						{
 							"key": "password",
+							"value": "12345678"
+						},
+						{
+							"key": "password_confirmation",
 							"value": "12345678"
 						}
 					]
@@ -679,8 +795,24 @@
 		{
 			"name": "logout",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/logout/",
 					"protocol": "http",

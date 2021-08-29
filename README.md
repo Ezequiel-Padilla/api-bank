@@ -7,56 +7,103 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Sobre API-BANK
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Implementación de una API REST con los endpoints y comportamientos que podemos realizar con una cuenta bancaria, ellos son RETIRO, DEPOSITO, y TRANSFERENCIA.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Crear un cuenta
+```
+@POST('/api/register', {
+  name: string,
+  amount: integer,
+  email: string,
+  password: string,
+  password_confirmation: string
+})
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Iniciar sesión con una cuenta
+```
+@POST('/api/login', {
+  email: string,
+  password: string
+})
+```
 
-## Learning Laravel
+- Ver todas las cuentas
+```
+@GET('/api/accounts')
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Ver una cuenta
+```
+@GET('/api/accounts/:id')
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Actualizar cuenta
+```
+@PUT('/api/account/:id', {
+  name: string,
+  amount: integer,
+  email: string,
+  password: string
+})
+```
 
-## Laravel Sponsors
+- Ver todos los eventos
+```
+@GET('/api/events')
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Evento retiro
+```
+@POST('/api/events', {
+  source: Account.id,
+  type: string,
+  amount: integer
+})
+```
 
-### Premium Partners
+- Evento transferir
+```
+@POST('/api/events', {
+  source: Account.id,
+  destiny: Account.id,
+  type: string,
+  amount: integer
+})
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
+- Evento deposito
+```
+@POST('/api/events', {
+  source: Account.id,
+  type: string,
+  amount: integer
+})
+```
 
-## Contributing
+- Logout
+```
+@POST('/api/logout)
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Resetear
+```
+@POST('/api/logout)
+```
 
-## Code of Conduct
+Todos los eventos, y las acciones de ver y editar la cuenta no se pueden lograr sin antes haber iniciado sesión o registrándose. Para estas acciones es necesario un token que brindan estos últimos; este token solo dura 5 minutos y se tiene que poner en cada acción que vayamos a hacer. Este token lo podrán obtener desde el mail que se envía.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Postman Collection
 
-## Security Vulnerabilities
+Dejo una Postman Collection en el root del proyecto, donde estan algunas request de prueba.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Levantar API-BANK
+
+-   `composer install`
+-   `php artisan migrate`
+-   `php artisan serve`
 
 ## License
 

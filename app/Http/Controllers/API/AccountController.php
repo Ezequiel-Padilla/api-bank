@@ -39,18 +39,20 @@ class AccountController extends ApiController
     public function update(Request $request, $id)
     {
         $account =  Account::find($id);
-        $account->update($request->all());
-        return $account;
-    }
+        $fields = $request->validate([
+            'name' => 'string',
+            'email' => 'string|',
+            'amount' => 'integer',
+            'password' => 'string|confirmed'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return Account::destroy($id);
+        $account->update([
+            'name' => $fields['name'],
+            'email' => $fields['email'],
+            'amount' => $fields['amount'],
+            'password' => bcrypt($fields['password'])
+        ]);
+        $account->save();
+        return $account;
     }
 }
