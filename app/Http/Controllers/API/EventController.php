@@ -7,7 +7,6 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ApiController;
 
 
@@ -47,8 +46,6 @@ class EventController extends ApiController
             'token' => $token
         ];
 
-        Mail::to('ezequiel.padilla@anima.edu.uy')->send(new \App\Mail\EventMail($response));
-
         switch (strtolower($request->input('type'))) {
             case 'retiro':
                 $this->retiro($account_source, $event, $request);
@@ -80,8 +77,8 @@ class EventController extends ApiController
 
     private function retiro($account_source, $event, $request) {
         try {
-            if ($account_source->amount >= $request->input('monto')) {
-                $account_source->amount = $account_source->amount - $request->input('monto');
+            if ($account_source->amount >= $request->input('amount') && $request->input('amount') > 1000) {
+                $account_source->amount = $account_source->amount - $request->input('amount');
 
                 $account_source->save();
                 $event->save();
@@ -96,11 +93,11 @@ class EventController extends ApiController
 
     private function transferir($account_source, $event, $request) {
         try {
-            $Account_destiny = Account::find($request->input('destino'));
+            $Account_destiny = Account::find($request->input('destiny'));
 
-            if ($account_source->amount >= $request->input('monto')) {
-                $account_source->amount = $account_source->amount - $request->input('monto');
-                $Account_destiny->amount = $Account_destiny->amount + $request->input('monto');
+            if ($account_source->amount >= $request->input('amount') && $request->input('amount') > 1000) {
+                $account_source->amount = $account_source->amount - $request->input('amount');
+                $Account_destiny->amount = $Account_destiny->amount + $request->input('amount');
 
                 $account_source->save();
                 $Account_destiny->save();
@@ -116,7 +113,7 @@ class EventController extends ApiController
 
     private function deposito($account_source, $event, $request) {
         try {
-            $account_source->amount = $account_source->amount + $request->input('monto');
+            $account_source->amount = $account_source->amount + $request->input('amount');
 
             $account_source->save();
             $event->save();
