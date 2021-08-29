@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +13,11 @@ use App\Http\Controllers\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::apiResource('cuenta', App\Http\Controllers\AccountController::class);
-Route::apiResource('evento', App\Http\Controllers\EventController::class);
+Route::apiResource('accounts', App\Http\Controllers\API\AccountController::class);
+Route::apiResource('events', App\Http\Controllers\API\EventController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('events', [App\Http\Controllers\API\EventController::class, 'store']);
+});
 Route::post('/reset', function() {
-    try {
-        Artisan::call('migrate:fresh');
-        return 'Reseteado!';
-    } catch (\Exception $e) {
-        return 'Error al resetear';
-    }
+    return Artisan::call('migrate:fresh');    
 });

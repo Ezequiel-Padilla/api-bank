@@ -9,6 +9,13 @@ class Account extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'amount'
+    ];
+
     public function event()
     {
         return $this->hasMany(Event::class, 'foreign_key');
