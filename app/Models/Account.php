@@ -14,15 +14,9 @@ class Account extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'amount',
         'password',
-        'amount'
-    ];
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'amount'
+        'password_confirmation'
     ];
 
     public function event()

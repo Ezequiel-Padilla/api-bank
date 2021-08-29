@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:accounts,email',
@@ -32,11 +33,12 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        Mail::to('ezequiel.padilla@anima.edu.uy')->send(new \App\Mail\AccountMail($response));
+        Mail::to($account->email)->send(new \App\Mail\AccountMail($response));
         return response($response, 201);
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $fields = $request->validate([
             'email' => 'required|string|',
             'password' => 'required|string|'
@@ -57,11 +59,12 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        Mail::to('ezequiel.padilla@anima.edu.uy')->send(new \App\Mail\AccountMail($response));
+        Mail::to($account->email)->send(new \App\Mail\AccountMail($response));
         return response($response, 201);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         auth()->user()->tokens()->delete();
 
         return [

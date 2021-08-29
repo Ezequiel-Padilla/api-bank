@@ -21,7 +21,6 @@ class CreateEventsTable extends Migration
             $table->foreign('destiny')->references('id')->on('accounts');
             $table->enum('type', ['Transferir','Retiro','Deposito']);
             $table->integer('amount');
-            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }

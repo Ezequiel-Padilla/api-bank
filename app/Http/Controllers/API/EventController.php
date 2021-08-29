@@ -5,8 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Models\Account;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ApiController;
 
 
@@ -37,31 +35,21 @@ class EventController extends ApiController
             'amount' => 'required'
         ]);
 
-        $event = Event::create($request->all());
-        $account_source = Account::find($event->source);
-        $token = $event->createToken('eventToken')->plainTextToken;
-
-        $response = [
-            'event' => $event,
-            'token' => $token
-        ];
-
         switch (strtolower($request->input('type'))) {
             case 'retiro':
-                $this->retiro($account_source, $event, $request);
+                return $this->withdrawal($request);
                 break;
 
             case 'transferir':
-                $this->transferir($account_source, $event, $request);
+                return $this->transfer($request);
                 break;
 
             case 'deposito':
-                $this->deposito($account_source, $event, $request);
+                return $this->deposit($request);
                 break;
             default:
-                return $this->sendError('El tipo de evento no existe, los eventos disponibles son Deposito, Transferir y Retiro');
+                return $this->sendError('Error de tipo', 'El tipo de evento no existe, los eventos disponibles son deposito, transferir y retiro');
         }
-        $event->tokens()->delete();
     }
 
     /**
@@ -75,51 +63,67 @@ class EventController extends ApiController
         return Event::find($id);
     }
 
-    private function retiro($account_source, $event, $request) {
+    private function withdrawal($request)
+    {
         try {
+            $account_source = Account::find($request->input('source'));
+
             if ($account_source->amount >= $request->input('amount') && $request->input('amount') > 1000) {
                 $account_source->amount = $account_source->amount - $request->input('amount');
 
+                $event = Event::create($request->all());
+
                 $account_source->save();
                 $event->save();
-                return $this->sendResponse($event, "evento creado correctamente y Retiro confirmado");
+
+                return $this->sendResponse($event, 'evento creado correctamente y retiro confirmado', 200);
             } else {
-                return $this->sendError('La cuenta no tiene suficiente monto');
+                return $this->sendError('Error monto', 'La cuenta no tiene suficiente monto');
             }
         } catch (\Exception $e) {
-            return $this->sendError($e, "Error al realizar el Retiro", 200);
+            return $this->sendError($e, 'Error al realizar el retiro');
         }
     }
 
-    private function transferir($account_source, $event, $request) {
+    private function transfer($request)
+    {
         try {
-            $Account_destiny = Account::find($request->input('destiny'));
+            $account_source = Account::find($request->input('source'));
+            $account_destiny = Account::find($request->input('destiny'));
 
             if ($account_source->amount >= $request->input('amount') && $request->input('amount') > 1000) {
                 $account_source->amount = $account_source->amount - $request->input('amount');
-                $Account_destiny->amount = $Account_destiny->amount + $request->input('amount');
+                $account_destiny->amount = $account_destiny->amount + $request->input('amount');
+
+                $event = Event::create($request->all());
 
                 $account_source->save();
-                $Account_destiny->save();
+                $account_destiny->save();
                 $event->save();
-                return $this->sendResponse($event, "evento creado correctamente y Transferencia confirmado");
+
+                return $this->sendResponse($event, 'evento creado correctamente y transferencia confirmada');
             } else {
-                return $this->sendError('La cuenta origen no tiene suficiente monto');
+                return $this->sendError('Error de monto', 'La cuenta origen no tiene suficiente monto');
             }
         } catch (\Exception $e) {
-            return $this->sendError($e, "Error al realizar la Transferencia", 200);
+            return $this->sendError($e, 'Error al realizar la transferencia');
         }
     }
 
-    private function deposito($account_source, $event, $request) {
+    private function deposit($request)
+    {
         try {
+            $account_source = Account::find($request->input('source'));
             $account_source->amount = $account_source->amount + $request->input('amount');
+
+            $event = Event::create($request->all());
 
             $account_source->save();
             $event->save();
-            return $this->sendResponse($event, "evento creado correctamente y Deposito confirmado");
+
+            return $this->sendResponse($event, 'evento creado correctamente y deposito confirmado');
         } catch (\Exception $e) {
-            return $this->sendError($e, "Error al realizar el Deposito", 200);
+            return $this->sendError($e, 'Error al realizar el deposito');
         }
     }
 }

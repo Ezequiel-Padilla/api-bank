@@ -19,24 +19,6 @@ class AccountController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required',
-    //         'password' => 'required',
-    //         'amount' => 'required'
-    //     ]);
-
-    //     return Account::create($request->all());
-    // }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
