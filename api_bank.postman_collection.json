@@ -1,0 +1,704 @@
+{
+	"info": {
+		"_postman_id": "cbfcb06a-9e29-48b2-b3f1-8c9fc27c24a0",
+		"name": "api_bank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/?name=Ezequiel Padilla&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678&password_confirmation=12345678",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ezequiel Padilla"
+						},
+						{
+							"key": "email",
+							"value": "ezequiel.padilla@anima.edu.uy"
+						},
+						{
+							"key": "amount",
+							"value": "5000"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register/?name=Ezequiel Padilla&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678&password_confirmation=12345678",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Ezequiel Padilla"
+								},
+								{
+									"key": "email",
+									"value": "ezequiel.padilla@anima.edu.uy"
+								},
+								{
+									"key": "amount",
+									"value": "5000"
+								},
+								{
+									"key": "password",
+									"value": "12345678"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"account\": {\n        \"name\": \"Ezequiel Padilla\",\n        \"email\": \"ezequiel.padilla@anima.edu.uy\",\n        \"amount\": \"5000\",\n        \"password\": \"$2y$10$QdK0P7KRWNnEkH3DJjLW/uQ/H0zwjwIZujsUY2UdgTIOSu8IpEi/K\",\n        \"updated_at\": \"2021-08-29T20:07:26.000000Z\",\n        \"created_at\": \"2021-08-29T20:07:26.000000Z\",\n        \"id\": 1\n    },\n    \"token\": \"1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj\"\n}"
+				}
+			]
+		},
+		{
+			"name": "accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Ezequiel Padilla",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "ezequiel.padilla@anima.edu.uy",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "5000",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/accounts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": "dsdas"
+			},
+			"response": []
+		},
+		{
+			"name": "accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/accounts/1?name=Ezequiel Padillaa&email=ezequiel.padilla@anima.edu.uy&amount=5000&password=12345678",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"accounts",
+						"1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ezequiel Padillaa"
+						},
+						{
+							"key": "email",
+							"value": "ezequiel.padilla@anima.edu.uy"
+						},
+						{
+							"key": "amount",
+							"value": "5000"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "accounts",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/accounts/1?email=ezequiel.padilla@anima.edu.uy&name=Ezequiel Padilla&amount=5000&password=12345678&password_confirmation=12345678",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"accounts",
+								"1"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "ezequiel.padilla@anima.edu.uy"
+								},
+								{
+									"key": "name",
+									"value": "Ezequiel Padilla"
+								},
+								{
+									"key": "amount",
+									"value": "5000"
+								},
+								{
+									"key": "password",
+									"value": "12345678"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Ezequiel Padillaa\",\n    \"amount\": \"5000\",\n    \"email\": \"ezequiel.padilla@anima.edu.uy\",\n    \"password\": \"12345678\",\n    \"active\": 1,\n    \"created_at\": \"2021-08-29T20:07:26.000000Z\",\n    \"updated_at\": \"2021-08-29T20:08:27.000000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/events/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withdrawal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/events/?source=1&type=retiro&amount=1001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "source",
+							"value": "1"
+						},
+						{
+							"key": "destiny",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "retiro"
+						},
+						{
+							"key": "amount",
+							"value": "1001"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "withdrawal",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/events/?source=1&type=retiro&amount=1001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"events",
+								""
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "1"
+								},
+								{
+									"key": "type",
+									"value": "retiro"
+								},
+								{
+									"key": "amount",
+									"value": "1001"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"source\": \"1\",\n        \"type\": \"retiro\",\n        \"amount\": \"1001\",\n        \"updated_at\": \"2021-08-29T20:10:30.000000Z\",\n        \"created_at\": \"2021-08-29T20:10:30.000000Z\",\n        \"id\": 1\n    },\n    \"message\": \"evento creado correctamente y retiro confirmado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "transfer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/events/?source=1&destiny=2&type=transferir&amount=1001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "source",
+							"value": "1"
+						},
+						{
+							"key": "destiny",
+							"value": "2"
+						},
+						{
+							"key": "type",
+							"value": "transferir"
+						},
+						{
+							"key": "amount",
+							"value": "1001"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "transfer",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/events/?source=1&destiny=2&type=transferir&amount=1001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"events",
+								""
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "1"
+								},
+								{
+									"key": "destiny",
+									"value": "2"
+								},
+								{
+									"key": "type",
+									"value": "transferir"
+								},
+								{
+									"key": "amount",
+									"value": "1001"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"source\": \"1\",\n        \"destiny\": \"2\",\n        \"type\": \"transferir\",\n        \"amount\": \"1001\",\n        \"updated_at\": \"2021-08-29T20:11:44.000000Z\",\n        \"created_at\": \"2021-08-29T20:11:44.000000Z\",\n        \"id\": 2\n    },\n    \"message\": \"evento creado correctamente y transferencia confirmada\"\n}"
+				}
+			]
+		},
+		{
+			"name": "deposit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|6xC6lPBck8zp2XZ2W4anFO8HJpOLgh2fCMMe6Mfj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/events/?source=1&type=deposito&amount=1001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"events",
+						""
+					],
+					"query": [
+						{
+							"key": "source",
+							"value": "1"
+						},
+						{
+							"key": "type",
+							"value": "deposito"
+						},
+						{
+							"key": "amount",
+							"value": "1001"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deposit",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/events/?source=1&type=deposito&amount=1001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"events",
+								""
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "1"
+								},
+								{
+									"key": "type",
+									"value": "deposito"
+								},
+								{
+									"key": "amount",
+									"value": "1001"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"source\": \"1\",\n        \"type\": \"deposito\",\n        \"amount\": \"1001\",\n        \"updated_at\": \"2021-08-29T20:14:35.000000Z\",\n        \"created_at\": \"2021-08-29T20:14:35.000000Z\",\n        \"id\": 3\n    },\n    \"message\": \"evento creado correctamente y deposito confirmado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/reset",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
